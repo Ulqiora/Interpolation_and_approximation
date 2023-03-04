@@ -1,7 +1,7 @@
 CC=g++
 BD=../build
 GCOV_REPORT_FOLDER=$(BD)
-CXX_FLAGS=-c -std=c++17 #-Wall -Werror -Wextra -Wfloat-equal -Warray-bounds -Wshadow -pedantic
+CXX_FLAGS=-c -std=c++17 -O2#-Wall -Werror -Wextra -Wfloat-equal -Warray-bounds -Wshadow -pedantic
 LCOVFLAGS=-fprofile-arcs -ftest-coverage
 GTESTFLAGS=-lgtest
 
