@@ -1,6 +1,7 @@
 #pragma once
 #include <cmath>
 #include <iostream>
+#include <iomanip>
 class Matrix {
     friend Matrix operator*(const Matrix& other, double const num);
     friend Matrix operator*(double const num, const Matrix& other);
@@ -11,11 +12,12 @@ class Matrix {
     [[nodiscard]] double** NewMatrix(size_t rows, size_t cols) const;
     void DestroyMatrix();
     void CopyMatrix(double** matrix_copy);
-    [[nodiscard]] Matrix CreateMinor(size_t row, size_t column) const;
 
  public:
+    [[nodiscard]] Matrix CreateMinor(size_t row, size_t column) const;
     Matrix();
     Matrix(size_t rows, size_t cols);
+    Matrix(size_t n);
     Matrix(const Matrix& other);
     Matrix(Matrix&& other);
     ~Matrix();
