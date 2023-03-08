@@ -5,16 +5,16 @@
 class ResCubicSplines2D : public IGraphByDiscrete2D {
  private:
     std::vector<double> x_;
-    std::vector<CubicSplines::CubicSplinesCoeffOneInterval> coeffs_;
+    std::vector<CubicSplines::CoeffOneInterval> coeffs_;
  public:
     ResCubicSplines2D(const std::vector<double>& X,
-                      std::vector<CubicSplines::CubicSplinesCoeffOneInterval> coeffs)
+                      std::vector<CubicSplines::CoeffOneInterval> coeffs)
         : x_(X), coeffs_(coeffs) {}
     double calc(double arg) const {
         auto founded = std::find_if(x_.begin(), x_.end(), [arg](const auto& value) { return arg <= value; });
         if ((founded == x_.begin()&&x_.front()!=(*founded)) || founded == x_.end())
             throw std::invalid_argument("This point does not belong to the interpolation interval!");
-        CubicSplines::CubicSplinesCoeffOneInterval now;
+        CubicSplines::CoeffOneInterval now;
         if(founded==x_.begin())
             now=coeffs_[(founded)-x_.begin()];
         else {

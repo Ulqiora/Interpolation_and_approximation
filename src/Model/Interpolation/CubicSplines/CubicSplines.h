@@ -10,7 +10,7 @@ class ResCubicSplines2D;
 class CubicSplines : public Interpolation {
  public:
     enum Coeff { A = 0, B, C, D };
-    struct CubicSplinesCoeffOneInterval {
+    struct CoeffOneInterval {
         double A, B, C, D;
     };
     [[nodiscard]] virtual IGraphByDiscrete2D* CreateFunction(const std::vector<double>& X, const std::vector<double>& Y);
@@ -22,7 +22,7 @@ class CubicSplines : public Interpolation {
     void SetCoeffByThirdClaim(Matrix& coeffs, const std::vector<double>& X, const std::vector<double>& Y);
     void SimplifyMatrixCoeffs(Matrix& coeffs);
     Matrix SimplifyMatrixYs(std::vector<double>& Ys, const std::vector<double>& polinomCoeff);
-    std::vector<CubicSplinesCoeffOneInterval> CreateResult(std::vector<double>& polinomCoeff,
+    std::vector<CoeffOneInterval> CreateResult(std::vector<double>& polinomCoeff,
                                                            Matrix OtherCoefficient);
 
 };
