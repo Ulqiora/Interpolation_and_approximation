@@ -3,7 +3,7 @@
 
 #include "../IInterpolation2D.h"
 
-class NewtonPolynomInterp : public Interpolation{
+class NewtonPolynomInterp : public IInterpolation{
  public:
     using SubTable = std::vector<std::vector<double>>;
     // [[nodiscard]]
