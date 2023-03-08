@@ -7,7 +7,7 @@ class ResCubicSplines2D;
 1) число интервалов N=n-1
 2) по первому требовению выставляются первые 2N уравнений
 */
-class CubicSplines : public Interpolation {
+class CubicSplines : public IInterpolation {
  public:
     enum Coeff { A = 0, B, C, D };
     struct CoeffOneInterval {

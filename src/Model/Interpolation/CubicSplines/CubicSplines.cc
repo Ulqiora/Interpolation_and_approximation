@@ -62,7 +62,7 @@ Matrix CubicSplines::SimplifyMatrixYs(std::vector<double>& Ys, const std::vector
     for (int i = 0; i < Ys.size(); i++) res(i, 0) = Ys[i];
     return res;
 }
-std::vector<CubicSplines::CubicSplinesCoeffOneInterval> CubicSplines::CreateResult(
+std::vector<CubicSplines::CoeffOneInterval> CubicSplines::CreateResult(
     std::vector<double>& polinomCoeff, Matrix OtherCoefficient) {
     polinomCoeff[1] = OtherCoefficient(0, 0);
     polinomCoeff[3] = OtherCoefficient(1, 0);
@@ -71,7 +71,7 @@ std::vector<CubicSplines::CubicSplinesCoeffOneInterval> CubicSplines::CreateResu
         polinomCoeff[4 * interval + C] = OtherCoefficient(i + 1, 0);
         polinomCoeff[4 * interval + D] = OtherCoefficient(i + 2, 0);
     }
-    std::vector<CubicSplinesCoeffOneInterval> res(polinomCoeff.size() / 4);
+    std::vector<CoeffOneInterval> res(polinomCoeff.size() / 4);
     for (int i = 0; i < res.size(); i++) {
         res[i].A = polinomCoeff[i * 4 + A];
         res[i].B = polinomCoeff[i * 4 + B];
