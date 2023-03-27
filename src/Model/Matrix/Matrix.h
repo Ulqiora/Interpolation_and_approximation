@@ -60,10 +60,12 @@ class Matrix {
         std::pair<Matrix, Matrix> res;
         auto size(matrix.GetCols());
         res.first.SetToIdentity(size),res.second.SetToIdentity(size);
+        size_t stop=0;
         for (size_t i = 0; i < size; i++) {
             for (size_t j = 0; j < size; j++) {
                 double mul = 0;
-                for (size_t k = 0; k < (i <= j ? i : j); k++)
+                stop = i <= j ? i : j;
+                for (size_t k = 0; k < stop; k++)
                     mul += (res.first(i, k) * res.second(k, j));
                 if (i <= j)
                     res.second(i, j) = matrix(i, j) - mul;
