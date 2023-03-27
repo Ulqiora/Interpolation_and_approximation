@@ -7,11 +7,11 @@
 #include "Model/Interpolation/NewtonPolynomInterp/NewtonPolynomInterp.h"
 
 int main(){
-    IGraphing2DByDiscrete* graphing=new LeastSquareApprox(20);
-    std::vector<double> X{1,2,3,4,5,6,7,8,9};
-    std::vector<double> Y{1,4,9,16,25,36,49,64,81};
-    std::cout<<X.size()<<"  "<<Y.size();
+    IGraphing2DByDiscrete* graphing=new NewtonPolynomInterp();
+    std::vector<double> X{1, 3.5, 6, 8.5, 11, 13.5, 16};
+    std::vector<double> Y{1.4142,3.3741,4.4375,5.2223,5.862,6.4106,6.8957};
+    std::cout<<X.size()<<"  "<<Y.size()<<'\n';
     auto temp=graphing->CreateFunction(X,Y);
-    // std::cout<<temp->calc(1.5);
+    std::cout<<temp->calc(8.5);
     return 0;
 }
