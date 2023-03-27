@@ -9,5 +9,5 @@ class NewtonPolynomInterp : public IInterpolation{
     // [[nodiscard]]
     virtual IGraphByDiscrete2D* CreateFunction(const std::vector<double>& X,const std::vector<double>& Y);
  private:
-    std::vector<double> CreateColOfSub(const std::vector<double>& col);
+    std::vector<double> CreateColOfSub(const std::vector<double>& col,size_t i);
 };
