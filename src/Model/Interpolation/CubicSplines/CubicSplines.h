@@ -1,6 +1,6 @@
 #pragma once
 #include "../../Matrix/Matrix.h"
-#include "../../Matrix/SLEAlgorithm.h"
+#include "../../Matrix/LU.h"
 #include "../IInterpolation2D.h"
 class ResCubicSplines2D;
 /*
@@ -11,7 +11,7 @@ class ResCubicSplines2D;
 class CubicSplines : public IInterpolation {
  public:
     enum Coeff { A = 0, B, C, D };
-    SLEAlgorithm slea;
+    LU slea;
     [[nodiscard]] virtual IGraphByDiscrete2D* CreateFunction(const std::vector<double>& X, const std::vector<double>& Y);
  private:
 

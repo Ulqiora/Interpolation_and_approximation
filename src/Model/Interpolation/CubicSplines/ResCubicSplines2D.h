@@ -5,11 +5,11 @@
 class ResCubicSplines2D : public IGraphByDiscrete2D {
    private:
     std::vector<double> x_;
-    std::vector<std::vector<double>> coeffs_;
+    std::vector<std::vector<long double>> coeffs_;
 
    public:
     ResCubicSplines2D(const std::vector<double>& X,
-                      std::vector<std::vector<double>>&& coeffs)
+                      std::vector<std::vector<long double>>&& coeffs)
         : x_(X), coeffs_(coeffs) {}
     double calc(double arg) const {
         if(arg<x_.front()||arg>x_.back())

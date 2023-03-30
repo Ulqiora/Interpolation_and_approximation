@@ -1,4 +1,4 @@
-#include "system_of_linear_equations.h"
+#include "LU.h"
 
 
 std::vector<long double> matrixToVector(Matrix& matrix) {
