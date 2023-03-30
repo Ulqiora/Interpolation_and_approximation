@@ -17,6 +17,7 @@ void SLEAlgorithm::solveGauss() {
 
     for (i = 0; i < mSize; i++) {
         if (std::isnan(result.answer[i])) {
+            std::cout<<"nan: "<<i<<'\n';
             throw std::out_of_range("Cannot solve this matrix");
         }
     }

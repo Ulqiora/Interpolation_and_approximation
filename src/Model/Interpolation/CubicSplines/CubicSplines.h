@@ -1,5 +1,6 @@
 #pragma once
 #include "../../Matrix/Matrix.h"
+#include "../../Matrix/SLEAlgorithm.h"
 #include "../IInterpolation2D.h"
 class ResCubicSplines2D;
 /*
@@ -10,19 +11,8 @@ class ResCubicSplines2D;
 class CubicSplines : public IInterpolation {
  public:
     enum Coeff { A = 0, B, C, D };
-    struct CoeffOneInterval {
-        double A, B, C, D;
-    };
+    SLEAlgorithm slea;
     [[nodiscard]] virtual IGraphByDiscrete2D* CreateFunction(const std::vector<double>& X, const std::vector<double>& Y);
-
  private:
-    void SetCoeffByFirstClaim(Matrix& coeffs, std::vector<double>& Ys, const std::vector<double>& X,
-                              const std::vector<double>& Y, std::vector<double>& polinomCoeff);
-    void SetCoeffBySecondClaim(Matrix& coeffs, const std::vector<double>& X, const std::vector<double>& Y);
-    void SetCoeffByThirdClaim(Matrix& coeffs, const std::vector<double>& X, const std::vector<double>& Y);
-    void SimplifyMatrixCoeffs(Matrix& coeffs);
-    Matrix SimplifyMatrixYs(std::vector<double>& Ys, const std::vector<double>& polinomCoeff);
-    std::vector<CoeffOneInterval> CreateResult(std::vector<double>& polinomCoeff,
-                                                           Matrix OtherCoefficient);
 
 };

@@ -3,25 +3,33 @@
 #include "CubicSplines.h"
 
 class ResCubicSplines2D : public IGraphByDiscrete2D {
- private:
+   private:
     std::vector<double> x_;
-    std::vector<CubicSplines::CoeffOneInterval> coeffs_;
- public:
+    std::vector<std::vector<double>> coeffs_;
+
+   public:
     ResCubicSplines2D(const std::vector<double>& X,
-                      std::vector<CubicSplines::CoeffOneInterval> coeffs)
+                      std::vector<std::vector<double>>&& coeffs)
         : x_(X), coeffs_(coeffs) {}
     double calc(double arg) const {
-        auto founded = std::find_if(x_.begin(), x_.end(), [arg](const auto& value) { return arg <= value; });
-        if ((founded == x_.begin()&&x_.front()!=(*founded)) || founded == x_.end())
-            throw std::invalid_argument("This point does not belong to the interpolation interval!");
-        CubicSplines::CoeffOneInterval now;
-        if(founded==x_.begin())
-            now=coeffs_[(founded)-x_.begin()];
+        if(arg<x_.front()||arg>x_.back())
+            throw std::invalid_argument(
+                "This point does not belong to the interpolation interval!");
+        auto founded =
+            std::find_if(x_.begin(), x_.end(),
+                         [arg](const auto& value) { return arg <= value; });
+        int now;
+        if (founded == x_.begin())
+            now = (founded)-x_.begin();
         else {
-            now = coeffs_[founded - x_.begin() - 1];
+            now = founded - x_.begin() - 1;
             founded--;
         }
-        return now.A + now.B * (arg - (*founded)) + now.C * (arg - (*founded)) * (arg - (*founded)) +
-               now.D * (arg - (*founded)) * (arg - (*founded)) * (arg - (*founded));
+        return coeffs_[CubicSplines::Coeff::A][now] +
+               coeffs_[CubicSplines::Coeff::B][now] * (arg - (*founded)) +
+               coeffs_[CubicSplines::Coeff::C][now] * (arg - (*founded)) *
+                   (arg - (*founded)) +
+               coeffs_[CubicSplines::Coeff::D][now] * (arg - (*founded)) *
+                   (arg - (*founded)) * (arg - (*founded));
     }
 };
