@@ -13,5 +13,6 @@ int main(){
     std::cout<<X.size()<<"  "<<Y.size()<<'\n';
     auto temp=graphing->CreateFunction(X,Y);
     std::cout<<temp->calc(7);
+    std::cout<<sizeof(long double)<<"   "<<sizeof(double);
     return 0;
 }

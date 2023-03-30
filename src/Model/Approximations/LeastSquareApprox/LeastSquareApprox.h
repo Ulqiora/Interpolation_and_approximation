@@ -5,6 +5,7 @@
 
 #include "../../Matrix/SLEAlgorithm.h"
 #include "../../Matrix/Matrix.h"
+#include "../../Matrix/LU.h"
 #include "../IApproximation2D.h"
 #include "ResLSA2D.h"
 
@@ -12,7 +13,7 @@ class LeastSquareApprox : public IApproximation2D {
     using FuncForCalcCoeff =
         std::function<std::pair<double, double>(const std::vector<double> &, const std::vector<double> &)>;
     size_t degree_;
-    SLEAlgorithm slea_;
+    LU slea_;
 
  public:
     explicit LeastSquareApprox(size_t degree = 6) : degree_(degree) {}
